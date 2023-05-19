@@ -5,6 +5,6 @@ const mapArray = prices.map((price, index) => ({
 }));
 console.log('Price objects', mapArray);
 const dollarPrice = prices.map((price) => {
-  return price.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+  return price.toFixed(2).toString();
 });
 console.log('Formatted prices', dollarPrice);
