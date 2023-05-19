@@ -11,3 +11,11 @@ const names = [
   'Janese',
   'Donna',
 ];
+
+const filteredNumbers = numbers.filter((element) => element % 2 === 0);
+console.log('Even numbers', filteredNumbers);
+
+const filterNames = names.filter(
+  (element) => element.includes('d') || element.includes('D')
+);
+console.log(filterNames);
