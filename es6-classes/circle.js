@@ -3,14 +3,14 @@
 class Circle extends Shape {
   constructor(radius) {
     super(radius);
-    this.values = [radius];
+    this.radius = radius;
   }
 
   describe() {
-    return `The shape is a Circle. The radius is ${this.values}, the area is ${(
+    return `The shape is a Circle. The radius is ${this.radius}, the area is ${(
       Math.PI *
-      this.values ** 2
-    ).toFixed(3)}, and the perimeter is ${(2 * Math.PI * this.values).toFixed(
+      this.radius ** 2
+    ).toFixed(3)}, and the perimeter is ${(2 * Math.PI * this.radius).toFixed(
       3
     )}`;
   }
