@@ -1,11 +1,12 @@
 /* exported Shape */
 class Shape {
   constructor(area, perimeter) {
-    this.values = [area, perimeter];
+    this.area = area;
+    this.perimeter = perimeter;
   }
 
   describe() {
-    return `The area is ${this.values[0]} and the perimeter is ${this.values[1]}`;
+    return `The area is ${this.area} and the perimeter is ${this.perimeter}`;
   }
 }
 
