@@ -3,13 +3,13 @@
 class Square extends Shape {
   constructor(width) {
     super(width);
-    this.values = [width];
+    this.width = width;
   }
 
   describe() {
-    return `The shape is a Square. The width is ${this.values}, the area is ${
-      this.values ** 2
-    }, and the perimeter is ${this.values * 4}`;
+    return `The shape is a Square. The width is ${this.width}, the area is ${
+      this.width ** 2
+    }, and the perimeter is ${this.width * 4}`;
   }
 }
 
