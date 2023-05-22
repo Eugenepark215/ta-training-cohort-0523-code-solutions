@@ -25,4 +25,15 @@ class Bank {
     }
     return null;
   }
+
+  getTotalAssets() {
+    if (this.accounts.length === 0) {
+      return 0;
+    }
+    let totalAssets = 0;
+    for (let i = 0; i < this.accounts.length; i++) {
+      totalAssets += this.accounts[i].getBalance();
+    }
+    return totalAssets;
+  }
 }
