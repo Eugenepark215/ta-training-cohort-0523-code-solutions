@@ -10,3 +10,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.purple {
+  background-color: purple;
+  color: white;
+}
+
+.blue-violet {
+  background-color: blueviolet;
+  color: white;
+}
+
+.red {
+  background-color: red;
+  color: white;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.yellow {
+  background-color: yellow;
+}
