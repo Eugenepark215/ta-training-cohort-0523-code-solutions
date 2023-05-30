@@ -1,9 +1,6 @@
-export function CustomButton({ text, color }) {
-  function handleClick() {
-    window.alert(text);
-  }
+export function CustomButton({ text, color, onCustomClick }) {
   return (
-    <button className={color} onClick={handleClick}>
+    <button className={color} onClick={() => onCustomClick({ text })}>
       {text}
     </button>
   );
