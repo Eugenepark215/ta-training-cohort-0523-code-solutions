@@ -5,5 +5,13 @@ export function ToggleButton({ text, color }) {
   function handleClick() {
     setClick(!isClicked ? true : false);
   }
-  return <button onClick={handleClick}>{text}</button>;
+  return isClicked ? (
+    <button className={color} onClick={handleClick}>
+      {text}
+    </button>
+  ) : (
+    <button className="" onClick={handleClick}>
+      {text}
+    </button>
+  );
 }
