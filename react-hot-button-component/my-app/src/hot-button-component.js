@@ -6,40 +6,20 @@ export function HotButton() {
   function handleIncrementClick() {
     incrementClick(isClicked + 1);
   }
-
+  let color;
   if (isClicked >= 18) {
-    return (
-      <button className="" onClick={handleIncrementClick}>
-        Hot Button
-      </button>
-    );
+    color = '';
   } else if (isClicked >= 15) {
-    return (
-      <button className="yellow" onClick={handleIncrementClick}>
-        Hot Button
-      </button>
-    );
+    color = 'yellow';
   } else if (isClicked >= 12) {
-    return (
-      <button className="orange" onClick={handleIncrementClick}>
-        Hot Button
-      </button>
-    );
+    color = 'orange';
   } else if (isClicked >= 9) {
-    return (
-      <button className="red" onClick={handleIncrementClick}>
-        Hot Button
-      </button>
-    );
+    color = 'red';
   } else if (isClicked >= 6) {
-    return (
-      <button className="blue-violet" onClick={handleIncrementClick}>
-        Hot Button
-      </button>
-    );
-  }
+    color = 'blue-violet';
+  } else color = 'purple';
   return (
-    <button className="purple" onClick={handleIncrementClick}>
+    <button className={color} onClick={handleIncrementClick}>
       Hot Button
     </button>
   );
