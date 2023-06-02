@@ -10,3 +10,38 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.display-flex {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.background {
+  width: 3rem;
+  border-radius: 15px;
+  transition: background-color 0.25s ease-in;
+}
+
+.background-OFF {
+  background-color: grey;
+}
+
+.background-ON {
+  background-color: green;
+}
+
+.switch {
+  border-radius: 15px;
+  height: 18.88px;
+  width: 18.88px;
+  transition: transform 0.25s ease-out;
+}
+
+.text {
+  margin-left: 10px;
+}
+
+.switch-ON {
+  transform: translateX(1.9rem);
+}
