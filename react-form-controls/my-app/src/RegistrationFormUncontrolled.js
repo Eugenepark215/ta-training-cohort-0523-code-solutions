@@ -12,9 +12,9 @@ export function RegistrationFormUncontrolled() {
         Username: <input name="username" />
       </label>
       <label>
-        Password: <input name="password" />
+        Password: <input type="password" name="password" />
       </label>
-      <button type="submit"></button>
+      <button type="submit">Sign Up</button>
     </form>
   );
 }
