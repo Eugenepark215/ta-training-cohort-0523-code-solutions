@@ -4,9 +4,14 @@ import { useState } from 'react';
 export function ValidatedInput() {
   const [text, setText] = useState('');
   const [valid, setValid] = useState('dark');
+  const specialCharacters =
+    /['!', '@', '#', '$', '%', '^', '&', '*', '(', ')']/;
 
   function validation(event) {
-    if (event.target.value.length >= 8) {
+    if (specialCharacters.test(event.target.value)) {
+      setText(event.target.value);
+      setValid('danger');
+    } else if (event.target.value.length >= 8) {
       setText(event.target.value);
       setValid('success');
     } else {
