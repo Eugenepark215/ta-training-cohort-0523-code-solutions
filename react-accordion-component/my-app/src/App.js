@@ -1,5 +1,6 @@
+import { AppDrawer } from './AppDrawer';
 function App() {
-  return <div></div>;
+  return <AppDrawer />;
 }
 
 export default App;
