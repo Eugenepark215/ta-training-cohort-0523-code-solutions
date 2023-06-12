@@ -1,6 +1,6 @@
 export function Menu(props) {
   const menuNames = props.array.map((element, index) => (
-    <li key={index} onClick={props.onCustomClick}>
+    <li key={index} onClick={props.onCustomClick} value={element}>
       {element}
     </li>
   ));

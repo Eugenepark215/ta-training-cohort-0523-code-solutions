@@ -70,3 +70,7 @@ h1 {
 .display {
   background-color: rgba(0 0 0 / 75%);
 }
+
+.no-pointer {
+  pointer-events: none;
+}
