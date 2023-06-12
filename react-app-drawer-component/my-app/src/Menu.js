@@ -5,7 +5,7 @@ export function Menu(props) {
     </li>
   ));
   return (
-    <div className="column">
+    <div className={`column ${props.className}`}>
       <h1>Menu</h1>
       <ul>{menuNames}</ul>
     </div>
