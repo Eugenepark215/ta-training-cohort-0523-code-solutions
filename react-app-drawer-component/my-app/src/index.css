@@ -28,7 +28,7 @@ li:hover {
   cursor: pointer;
 }
 
-h1 {
+.padding-left {
   padding-left: 2rem;
 }
 
@@ -73,4 +73,9 @@ h1 {
 
 .no-pointer {
   pointer-events: none;
+}
+
+.header {
+  text-align: center;
+  margin-top: 0;
 }
