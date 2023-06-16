@@ -10,3 +10,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+ul {
+  list-style-type: none;
+}
+
+.topic,
+.text {
+  border: 2px solid black;
+}
+
+.text {
+  width: 25em;
+  padding: 0.5em;
+}
+
+.topic {
+  background-color: lightgray;
+  padding: 1em;
+  width: 24em;
+}
