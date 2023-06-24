@@ -12,7 +12,7 @@ const imgPokemonArray = [
 function App() {
   return (
     <div>
-      <Carousel imgArray={imgPokemonArray} />
+      <Carousel images={imgPokemonArray} />
     </div>
   );
 }
