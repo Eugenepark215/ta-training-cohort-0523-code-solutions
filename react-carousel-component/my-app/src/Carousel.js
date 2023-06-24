@@ -1,7 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export function Carousel(props) {
   const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActive((active + 1) % props.imgArray.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [active, props.imgArray.length]);
 
   function handleActive(e) {
     setActive(parseInt(e.target.id));
@@ -28,7 +35,7 @@ export function Carousel(props) {
       <div class="column-one-third">
         <i class="fa-solid fa-chevron-left" onClick={chevron} />
       </div>
-      <div class="column-three-fifths">
+      <div class="column-one-third">
         {props.imgArray.map((img, index) => {
           const activeImg =
             props.imgArray.indexOf(img) === active ? '' : 'hidden';
