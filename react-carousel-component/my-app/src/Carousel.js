@@ -36,19 +36,7 @@ export function Carousel(props) {
         <i class="fa-solid fa-chevron-left" onClick={chevron} />
       </div>
       <div class="column-one-third">
-        {props.imgArray.map((img, index) => {
-          const activeImg =
-            props.imgArray.indexOf(img) === active ? '' : 'hidden';
-          return (
-            <img
-              key={index}
-              src={img}
-              alt=""
-              id={index}
-              className={`${activeImg}`}
-            />
-          );
-        })}
+        <img src={props.imgArray[active]} alt="pokemon"></img>
         <div class="dots-row">
           {props.imgArray.map((img, index) => {
             const colorIndex =
