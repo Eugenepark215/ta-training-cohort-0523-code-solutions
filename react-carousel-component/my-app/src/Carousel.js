@@ -1,4 +1,9 @@
+import { useState } from 'react';
 export function Carousel(props) {
+  const [active, setActive] = useState(0);
+  function handleIndex(e) {
+    setActive(parseInt(e.target.id));
+  }
   return (
     <div class="row margin-top">
       <div class="column-one-third">
@@ -8,9 +13,16 @@ export function Carousel(props) {
         <img src="imgsPokemon/007.png" alt="Squirtle" />
         <div class="dots-row">
           {props.imgArray.map((img, index) => {
+            const colorIndex =
+              props.imgArray.indexOf(img) === active
+                ? 'dot-buttons black'
+                : 'dot-buttons';
             return (
               <div className="column" key={img}>
-                <button class="dot-buttons" id={index}></button>
+                <button
+                  className={`${colorIndex}`}
+                  id={index}
+                  onClick={handleIndex}></button>
               </div>
             );
           })}
