@@ -8,6 +8,7 @@ const imgPokemonArray = [
   'imgsPokemon/656.png',
   'imgsPokemon/728.png',
   'imgsPokemon/816.png',
+  'imgsPokemon/912.png',
 ];
 function App() {
   return (
