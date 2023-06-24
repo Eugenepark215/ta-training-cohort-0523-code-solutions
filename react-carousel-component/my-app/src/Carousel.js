@@ -16,17 +16,9 @@ export function Carousel(props) {
 
   function chevron(e) {
     if (e.target.className === 'fa-solid fa-chevron-left') {
-      if (active === 0) {
-        setActive(props.imgArray.length - 1);
-      } else {
-        setActive(active - 1);
-      }
+      setActive((active - 1 + props.imgArray.length) % props.imgArray.length);
     } else {
-      if (active === props.imgArray.length - 1) {
-        setActive(0);
-      } else {
-        setActive(active + 1);
-      }
+      setActive((active + 1) % props.imgArray.length);
     }
   }
 
