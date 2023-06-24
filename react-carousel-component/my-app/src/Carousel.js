@@ -18,6 +18,10 @@ export function Carousel({ images }) {
     }
   }
 
+  function ActiveImage({ images, isActive }) {
+    return <img src={images[isActive]} alt="" />;
+  }
+
   function DotButton({ images, onSelect, isActive }) {
     return (
       <div className="dots-row">
@@ -44,7 +48,7 @@ export function Carousel({ images }) {
         <i className="fa-solid fa-chevron-left" onClick={chevron} />
       </div>
       <div className="column-one-third">
-        <img src={images[active]} alt="pokemon"></img>
+        <ActiveImage images={images} isActive={active} />
         <DotButton
           images={images}
           onSelect={(e) => setActive(e)}
