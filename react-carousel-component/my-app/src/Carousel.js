@@ -10,19 +10,23 @@ export function Carousel({ images }) {
     return () => clearInterval(interval);
   }, [active, images.length]);
 
-  function chevron(e) {
-    if (e.target.className === 'fa-solid fa-chevron-left') {
-      setActive((active - 1 + images.length) % images.length);
-    } else {
-      setActive((active + 1) % images.length);
-    }
+  function Chevron({ images, direction, onSelect }) {
+    return (
+      <div className="column-one-third">
+        {direction === 'left' ? (
+          <i className="fa-solid fa-chevron-left" onClick={onSelect} />
+        ) : (
+          <i className="fa-solid fa-chevron-right" onClick={onSelect} />
+        )}
+      </div>
+    );
   }
 
   function ActiveImage({ images, isActive }) {
     return <img src={images[isActive]} alt="" />;
   }
 
-  function DotButton({ images, onSelect, isActive }) {
+  function DotButton({ onSelect, isActive }) {
     return (
       <div className="dots-row">
         {images.map((img, index) => {
@@ -42,11 +46,13 @@ export function Carousel({ images }) {
       </div>
     );
   }
+
   return (
     <div className="row margin-top">
-      <div className="column-one-third">
-        <i className="fa-solid fa-chevron-left" onClick={chevron} />
-      </div>
+      <Chevron
+        direction="left"
+        onSelect={() => setActive((active - 1 + images.length) % images.length)}
+      />
       <div className="column-one-third">
         <ActiveImage images={images} isActive={active} />
         <DotButton
@@ -55,9 +61,10 @@ export function Carousel({ images }) {
           isActive={active}
         />
       </div>
-      <div className="column-one-third">
-        <i className="fa-solid fa-chevron-right" onClick={chevron} />
-      </div>
+      <Chevron
+        direction="right"
+        onSelect={() => setActive((active + 1) % images.length)}
+      />
     </div>
   );
 }
