@@ -1,5 +1,4 @@
 import TaskManager from './TaskManager';
-import './App.css';
 
 const tasks = [
   {

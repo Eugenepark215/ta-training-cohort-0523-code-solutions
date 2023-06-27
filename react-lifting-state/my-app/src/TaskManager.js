@@ -1,39 +1,25 @@
 import React, { useState } from 'react';
-
 /**
  * Manages outstanding and completed tasks.
  * Outstanding and completed tasks are displayed in separate lists.
- * Displayed tasks can be filtered using the Filter input. Only tasks
- * whose name matches the filter value are displayed in either list.
  * Props:
- *   - tasks, an Array of { id: number, name: string, completed: boolean }
- * TODO: It doesn't work!
+ *   - tasks, an Array of { id: number, name: string }
  */
 export default function TaskManager({ tasks }) {
-  return (
-    <div>
-      <Filter />
-      <div>
-        <OutstandingTasks tasks={tasks} />
-        <CompletedTasks tasks={[]} />
-      </div>
-    </div>
-  );
-}
+  // An array of the completed tasks.
+  const [completed, setCompleted] = useState([]);
 
-/**
- * An input field that can be used to filter a list of items.
- */
-function Filter() {
-  const [filter, setFilter] = useState('');
+  // All the tasks that are not completed.
+  const outstanding = tasks.filter((task) => !completed.includes(task));
+
+  function handleComplete(task) {
+    setCompleted([...completed, task]);
+  }
+
   return (
     <div>
-      <span>Filter: </span>
-      <input
-        type="text"
-        value={filter}
-        onChange={(e) => setFilter(e.target.value)}
-      />
+      <OutstandingTasks outstanding={outstanding} onComplete={handleComplete} />
+      <CompletedTasks completed={completed} />
     </div>
   );
 }
@@ -41,28 +27,19 @@ function Filter() {
 /**
  * An array of tasks with a checkbox to indicate they are completed.
  * Props:
- *   - tasks, the tasks to display
+ *   - outstanding, the uncompleted tasks to display
+ *   - onComplete, called with the task when it is marked as complete
  */
-function OutstandingTasks({ tasks }) {
-  // Tracks completed state of all tasks. key = task.id, value = task.completed
-  const [completed, setCompleted] = useState({});
-  if (tasks.length === 0) return <div>No outstanding tasks.</div>;
+function OutstandingTasks({ outstanding, onComplete }) {
+  if (outstanding.length === 0) return <div>No outstanding tasks.</div>;
   return (
     <div>
       <div>Outstanding Tasks</div>
       <ul style={{ listStyleType: 'none' }}>
-        {tasks.map((task) => (
+        {outstanding.map((task) => (
           <li key={task.id}>
-            <label>
-              <input
-                type="checkbox"
-                checked={!!completed[task.id]}
-                onChange={() =>
-                  setCompleted({ ...completed, [task.id]: !task.completed })
-                }
-              />
-              <span>{task.name}</span>
-            </label>
+            <input type="checkbox" onChange={() => onComplete(task)} />
+            <span>{task.name}</span>
           </li>
         ))}
       </ul>
@@ -75,13 +52,13 @@ function OutstandingTasks({ tasks }) {
  * Props:
  *   - tasks, the tasks to display
  */
-function CompletedTasks({ tasks }) {
-  if (tasks.length === 0) return <div>No completed tasks.</div>;
+function CompletedTasks({ completed }) {
+  if (completed.length === 0) return <div>No completed tasks.</div>;
   return (
     <div>
       <div>Completed Tasks</div>
       <ul style={{ listStyleType: 'none' }}>
-        {tasks.map((task) => (
+        {completed.map((task) => (
           <li key={task.id}>{task.name}</li>
         ))}
       </ul>
