@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { fetchProduct, toDollars } from '../lib';
 import './ProductDetails.css';
+import { Link, useParams } from 'react-router-dom';
 
 export default function ProductDetails() {
   // TODO: Retrieve productId from the route
-  const productId = undefined;
+  const { productId } = useParams();
   const [product, setProduct] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
@@ -40,10 +41,10 @@ export default function ProductDetails() {
         <div className="card-body">
           <div className="row">
             <div className="col">
-              <div className="btn text-secondary">
+              <Link to="/" className="btn text-secondary">
                 {/* TODO: Instead of a div, the above should link to `/` */}
                 &lt; Back to catalog
-              </div>
+              </Link>
             </div>
           </div>
           <div className="row mb-4">
