@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars -- Remove me */
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import AppContext from './components/AppContext';
@@ -16,7 +15,6 @@ export default function App() {
   const [isAuthorizing, setIsAuthorizing] = useState(true);
 
   useEffect(() => {
-    // If user logged in previously on this browser, authorize them
     const auth = localStorage.getItem(tokenKey);
     if (auth) {
       const a = JSON.parse(auth);
@@ -41,17 +39,16 @@ export default function App() {
   }
 
   const contextValue = { user, token, handleSignIn, handleSignOut };
-  /* TODO: Wrap the `Routes` with `AppContext.Provider`
-   * and pass `contextValue` as the Provider value.
-   */
   return (
-    <Routes>
-      <Route path="/" element={<NavBar />}>
-        <Route index element={<Home />} />
-        <Route path="sign-in" element={<Auth action="sign-in" />} />
-        <Route path="sign-up" element={<Auth action="sign-up" />} />
-        <Route path="*" element={<NotFound />} />
-      </Route>
-    </Routes>
+    <AppContext.Provider value={contextValue}>
+      <Routes>
+        <Route path="/" element={<NavBar />}>
+          <Route index element={<Home />} />
+          <Route path="sign-in" element={<Auth action="sign-in" />} />
+          <Route path="sign-up" element={<Auth action="sign-up" />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </AppContext.Provider>
   );
 }

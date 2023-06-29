@@ -1,13 +1,10 @@
-/* eslint-disable no-unused-vars -- Remove me */
 import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { FaBolt, FaSignOutAlt } from 'react-icons/fa';
 import AppContext from '../components/AppContext';
 
 export default function Navbar() {
-  /* TODO: Grab `user` and `handleSignOut` from `AppContext` */
-  const user = undefined;
-  const handleSignOut = undefined;
+  const { user, handleSignOut } = useContext(AppContext);
 
   return (
     <div>

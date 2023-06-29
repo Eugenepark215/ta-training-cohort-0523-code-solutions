@@ -1,13 +1,11 @@
-/* eslint-disable no-unused-vars -- Remove me */
-/* eslint-disable no-undef -- Remove me */
 import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AppContext from '../components/AppContext';
 import './HomePage.css';
 
 export default function Home() {
-  /* TODO: Grab `user` from `AppContext` */
   const navigate = useNavigate();
+  const { user } = useContext(AppContext);
 
   useEffect(() => {
     if (!user) navigate('/sign-in');
