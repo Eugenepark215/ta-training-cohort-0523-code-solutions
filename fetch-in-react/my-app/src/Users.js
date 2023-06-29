@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars -- Remove me */
 import React, { useEffect, useState } from 'react';
 import User from './User';
 import UserCard from './UserCard';
@@ -10,7 +9,26 @@ export default function Users() {
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState();
 
-  /* your code here (hint: useEffect) */
+  useEffect(() => {
+    const dataResponse = async () => {
+      try {
+        const response = await fetch(
+          'https://jsonplaceholder.typicode.com/users'
+        );
+        if (!response.ok) {
+          throw new Error(response.status);
+        }
+        const data = await response.json();
+        setUsers(data);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    dataResponse();
+  }, []);
+
   if (isLoading) {
     return <p>Loading...</p>;
   }
