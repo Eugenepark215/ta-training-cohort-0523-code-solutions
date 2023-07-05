@@ -1,39 +1,41 @@
-/* eslint-disable no-unused-vars -- Remove me */
 import { useEffect, useState } from 'react';
 
-/**
- * Manages the Todos by reading from and writing to the backend API.
- *
- * @returns {Object} with the following properties:
- *   isLoading: a boolean indicating if the data has not yet loaded;
- *   error: any error that occurred
- *   todos: a list of To Do items;
- *   addTodo: a function (newTodo) that will add a new To Do;
- *   toggleCompleted: a function (todoId) that will toggle the completion of an existing To Do.
- */
 export function useTodos() {
   const [todos, setTodos] = useState();
   const [error, setError] = useState();
   useEffect(() => {
-    /* TODO: If `todos` hasn't been defined yet, read the items from the API
-     * and set them into the `todos` state.
-     */
+    const getTodos = async () => {
+      try {
+        const response = await readTodos();
+        setTodos(response);
+      } catch (err) {
+        setError(err);
+      }
+    };
+    if (!todos) getTodos();
   }, [todos]);
 
-  function addTodo(newTodo) {
-    /* TODO: Call the API function that creates a Todo item.
-     * When the promise returned by that function resolves, update the `todos` state.
-     * Note that it is critical that you pass a _new_ array. Do not modify the `todos` array.
-     */
+  async function addTodo(newTodo) {
+    try {
+      const todoItem = await createTodo(newTodo);
+      setTodos([...todos, todoItem]);
+    } catch (err) {
+      setError(err);
+    }
   }
 
-  function toggleCompleted(todoId) {
-    /* TODO: Find the Todo item being updated, toggle its completed prop, and call
-     * the API function that updates a Todo item.
-     * When the promise returned by that function resolves, update the `todos` state.
-     * When updating this state, use the updated `todo` returned from the API.
-     * Note that it is critical that you pass a _new_ array. Do not modify the `todos` array.
-     */
+  async function toggleCompleted(todoId) {
+    try {
+      const filteredTodos = todos.filter((todo) => todo.todoId === todoId);
+      filteredTodos[0].isCompleted = !filteredTodos[0].isCompleted;
+      const completedTodo = await updateTodo(filteredTodos[0]);
+      const updatedTodo = todos.map((todo) =>
+        completedTodo.todoId === todo.todoId ? completedTodo : todo
+      );
+      setTodos(updatedTodo);
+    } catch (err) {
+      setError(err);
+    }
   }
 
   return {
@@ -45,21 +47,12 @@ export function useTodos() {
   };
 }
 
-/**
- * Reads all To Do items from the API.
- * @returns Promise that resolves with the read items.
- */
 async function readTodos() {
   const res = await fetch('/api/todos');
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
   return await res.json();
 }
 
-/**
- * Creates a new To Do item using the API.
- * @param todo The To Do to create.
- * @returns Promise that resolves with the new item returned from the API.
- */
 async function createTodo(todo) {
   const req = {
     method: 'POST',
@@ -71,11 +64,6 @@ async function createTodo(todo) {
   return await res.json();
 }
 
-/**
- * Updates a To Do item using the API by setting its `isCompleted` state.
- * @param todo The To Do to update.
- * @returns Promise that resolves with the updated To Do item.
- */
 async function updateTodo(todo) {
   const req = {
     method: 'PATCH',
